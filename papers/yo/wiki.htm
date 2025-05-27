@@ -1,0 +1,123 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><title>Dependent Typing</title>
+
+</head>
+<body bgcolor="white" text="black"><h1><img src="wiki_fichiers/wiki.gif">
+<a href="http://c2.com/cgi/fullSearch" rel="nofollow">Dependent Typing</a></h1>
+<div id="wiki">
+A <a href="http://c2.com/cgi/wiki?DependentTyping">DependentTyping</a> system describes types in terms of the values that inhabits the type.  I.e. in a <a href="http://c2.com/cgi/wiki?DependentTyping">DependentTyping</a>
+ system, one could discuss all prime numbers, all unbalanced trees, all 
+linked lists of more than fifty items, the type described by the set of 
+integers {1,2,3}, etc.  
+<p></p>
+No value in a <a href="http://c2.com/cgi/wiki?DependentTyping">DependentTyping</a> system can be given <em>a</em> single type; values can only ever be said to <em>conform</em> to a type.  This is because the only <em>smallest</em>
+ type for a particular value is the trivial type that describes that 
+precise value, but such a type description is generally far too trivial 
+to be of any value in the <a href="http://c2.com/cgi/wiki?DependentTyping">DependentTyping</a>
+ system.   (I.e. the value 3 is a prime, is an integer, is a positive 
+integer, is a non-negative integer, etc... but it's smallest type in a <a href="http://c2.com/cgi/wiki?DependentTyping">DependentTyping</a> system is the type that contains only 3.)  Because of this, traditional <a href="http://c2.com/cgi/wiki?TypeInference">TypeInference</a> (which assigns a single type to each value) is not useful in a <a href="http://c2.com/cgi/wiki?DependentTyping">DependentTyping</a> system.  
+<p></p>
+However, <a href="http://c2.com/cgi/wiki?TypeInference">TypeInference</a>
+ over variables can still be of value.  Such a system would need to 
+return a type descriptor that carries the properties that the variable 
+must carry.  First order predicates over the values are easily 
+sufficient type descriptors... though if types and type-descriptors are 
+also values, then you're suddenly into higher-order logics.  
+<p></p>
+For advantages, a <a href="http://c2.com/cgi/wiki?DependentTyping">DependentTyping</a> system allows non-trivial proofs for properties of both type-safety and program correctness.  In a <a href="http://c2.com/cgi/wiki?StaticTyping">StaticTyping</a> system, it also allows many non-trivial optimizations.
+<p></p>
+However, this comes at a major cost. Determining whether a given type in a <a href="http://c2.com/cgi/wiki?DependentTyping">DependentTyping</a>
+ system actually contains any values, or contains only a unique value, 
+is undecidable in the general case.  Second, determining whether two 
+different types are equal becomes a difficult problem, also generally 
+undecidable.  Third, determining whether a particular value belongs to a
+ type can trivially be turned into an NP-hard problem or problem for 
+which there is no known polynomial-time solution. To make these 
+decisions practical, <a href="http://c2.com/cgi/wiki?DependentTyping">DependentTyping</a> is often limited to languages where termination can be guaranteed.
+<p></p>
+As such, when working with a statically checked <a href="http://c2.com/cgi/wiki?DependentTyping">DependentTyping</a>
+ system, programmers must be careful to limit their own expressiveness 
+to that which they're willing to wait on when it comes time for <a href="http://c2.com/cgi/wiki?TypeChecking">TypeChecking</a>,
+ and they need to know that simply waiting for a very long time on a 
+very powerful machine won't necessarily make the proofs happen.  Systems
+ to speed up proofs are incredibly valuable.  (A trivial aid is to 
+memoizing previous successful proofs in the compile-test-modify cycle.)
+<p></p>
+Use of <a href="http://c2.com/cgi/wiki?ManifestTyping">ManifestTyping</a>
+ on variables and functions can also significantly simplify the overall 
+proof process and further aid in communication and documentation.  This 
+is, at least in part, because programmers lack the tendency to describe 
+the sort of massively complex types that might otherwise exist in a 
+fully <a href="http://c2.com/cgi/wiki?TypeInference">TypeInference</a> based <a href="http://c2.com/cgi/wiki?DependentTyping">DependentTyping</a>
+ system.  These do force the programmer to deal with all possible cases 
+of these simpler types and prevents some optimizations on the external 
+interfaces to a module, but that is generally an acceptable loss due to 
+the gain in both simplicity and the ability to easily modularize code.  
+<p></p>
+<a href="http://c2.com/cgi/wiki?TypeInference">TypeInference</a> in a <a href="http://c2.com/cgi/wiki?DependentTyping">DependentTyping</a> system and <a href="http://c2.com/cgi/wiki?ConstraintProgramming">ConstraintProgramming</a> are something like duals of one another, at least informally.  <a href="http://c2.com/cgi/wiki?TypeInference">TypeInference</a> finds the necessary <a href="http://c2.com/cgi/wiki?DependentTypes">DependentTypes</a> to prove or disprove safety over every application of function value to input value, while <a href="http://c2.com/cgi/wiki?ConstraintProgramming">ConstraintProgramming</a> finds the necessary value(s) to meet 'constraints', which may also be expressed in terms of <a href="http://c2.com/cgi/wiki?DependentTypes">DependentTypes</a>.  
+<p></p>
+The above isn't 'official'.  It's my understanding of the topic.
+<p></p>
+<hr>
+<p></p>
+Perhaps this is the ideal solution to the old "Circle vs Oval" type 
+problem?  A circle is a dependant type of an oval.  This, of course, 
+leads one to start thinking: "can I provide optimizations to my 
+dependant type"?  That is, can I do some neat <a href="http://c2.com/cgi/wiki?ExternalPolymorphism">ExternalPolymorphism</a> tricks where I check if a circle is an oval or a normal circle and do different operations on it?  Having learned <a href="http://c2.com/cgi/wiki?AdaLanguage">AdaLanguage</a>
+ in school, I've always felt that mainstream OOP type systems are 
+missing something in not being able to intuitively model units of 
+measure, constraints, etc.
+<p></p>
+<ul>
+<li>It can easily handle <a href="http://c2.com/cgi/wiki?CircleAndEllipseProblem">CircleAndEllipseProblem</a> when discussing values (which are mathematical and immutable).  However, <a href="http://c2.com/cgi/wiki?DependentTyping">DependentTyping</a> is generally described as being over values, not <a href="http://c2.com/cgi/wiki?MutableState">MutableState</a>, so it doesn't handle the Circle vs. Ellipse <strong>Objects</strong>
+ particularly well.  The mathematical 'value' or 'type' an object can 
+usually be described only in terms of its invariants (the messages and 
+message protocols it accepts, the guarantees it makes over 
+multiple-message interactions, etc.) and its momentary state (the value 
+held by its state at some particular point in time).  If the object can 
+be described as having a value that is a function of time, then that 
+works well enough... but that's not usually the case, as there is no 
+static, compile-time-predictable function of time for object state, so 
+we're left with invariants... the messages and discussions an object can
+ handle, and any promises it makes.
+</li><li>I suppose, though, that if you can guarantee that you're the 
+only one interacting with the object, and you can prove that you don't 
+send any messages the objects can't properly handle or that ruin any 
+assumptions you've made, then it may be possible to treat a circular 
+ovalObject as a circleObject when the situation is right.  It is 
+certainly possible to automatically start accepting requests for things 
+like 'radius' on an ovalObject when conditions are correct, especially 
+in <a href="http://c2.com/cgi/wiki?DynamicTyping">DynamicTyping</a> 
+systems.  OTOH, if you cannot guarantee that you're the only one 
+interacting with the object (e.g. in a highly concurrent system) then 
+this problem cannot be handled by <a href="http://c2.com/cgi/wiki?DependentTyping">DependentTyping</a>
+ at all because you cannot guarantee the needed invariants for the 
+duration of your interaction.  Type-safety checks of any sort can be 
+invalidated within microseconds of you performing them.  A perfectly 
+circular ovalObject cannot be safely treated as a circleObject if it 
+might change and lose its 'radius' accessor while you're in the middle 
+of observing it.
+<p></p>
+</li></ul>
+--
+<p></p>
+See also: <a href="http://c2.com/cgi/wiki?DependentTypes">DependentTypes</a>, <a href="http://c2.com/cgi/wiki?ConstraintProgramming">ConstraintProgramming</a>
+</div>
+
+<hr>
+<a href="http://c2.com/cgi/wiki?edit=DependentTyping" rel="nofollow"><img src="wiki_fichiers/wiki.png" style="border: medium none;"> EditText</a> of this page
+(last edited <a href="http://c2.com/cgi/quickDiff?DependentTyping" rel="nofollow">July 8, 2010</a>)
+or <a href="http://c2.com/cgi/wiki?FindPage">FindPage</a> with title or text search<br>
+<link rel="alternate" type="application/wiki" title="Edit this page!" href="http://c2.com/cgi/wiki?edit=DependentTyping">
+<link rel="edit" title="Edit this page" href="http://c2.com/cgi/wiki?edit=DependentTyping">
+
+<script src="wiki_fichiers/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2377314-2";
+_udn="c2.com"; 
+urchinTracker();
+</script>
+
+
+</body></html>

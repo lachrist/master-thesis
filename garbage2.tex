@@ -1,0 +1,125 @@
+
+\paragraph{Addition} This function add a binding to type variable and update all the existing binding. $\otimes\in \Gamma\times(\Xi\times\Pi)\to\Gamma$. $(\gamma\otimes(\xi,\pi))\ \tilde\xi=(\gamma\ \tilde\xi)\oslash(\xi,\pi)$. When $\otimes$ is performed, it perform a substitution to all the bindings, so all the type variables that appear in a binding does not have bindings themself.
+
+\paragraph{Substitution} This function apply a subsitution to a monotype, $\oslash\in\Pi\times(\Xi\times\Pi)\to\Pi$. Here is its definition:
+\begin{itemize}
+\item $\beta\oslash(\xi,\pi)=\beta$
+\item $\xi_1\oslash(\xi_2,\pi)=\xi$
+	\begin{itemize}
+	\item $\left\{\begin{array}{ccl}
+		\xi_1=\xi_2&\Rightarrow&\xi=\pi\\
+		\xi_1\neq\xi_2&\Rightarrow&\xi=\xi_1\\
+		\end{array}\right.$
+	\end{itemize}
+\item $(\pi_1\to\pi_2)\oslash(\xi,\pi)=(\pi_1\oslash(\xi,\pi))\to(\pi_2\oslash(\xi,\pi))$
+\end{itemize}
+
+\begin{table}
+\centering
+\begin{tabular}{|l|l|}
+\hline
+\bcell{$U\ \phi\ \gamma = \gamma$}&\scell{Unification terminated}\\
+\hline
+\bcell{$U\ (\{(\xi_1,\xi_2)\}\cup \psi)\ \gamma=\tilde\gamma$
+	\begin{itemize}
+	\item $\left\{\begin{array}{ccl}
+		\xi_1=\xi_2&\Rightarrow& \tilde\gamma=U\ \psi\ \gamma\\
+		\xi_1\neq\xi_2\wedge (\gamma\ \xi_1 = \xi_1)&\Rightarrow& \tilde\gamma=\gamma\otimes\{(\xi_1,\xi_2)\}\\
+		\xi_1\neq\xi_2\wedge (\gamma\ \xi_1\neq\xi_1) &\Rightarrow&\tilde\gamma=U\ (\{(\gamma\ \xi_1,\xi_2)\}\cup\psi)\ \gamma\\
+		\end{array}\right.$
+	\end{itemize}}&\scell{When two type variables have to be unified, there is three case. When the variables are equals, there is no effect. When there is no binding for $\xi$ we bind it to $\xi_2$. When there is a binding for $\xi$ we unify $\xi_2$ to that binding.}\\
+\hline
+\bcell{$U\ (\{(\xi,\beta)\}\cup\psi)\ \gamma=\tilde\gamma$
+	\begin{itemize}
+	\item$\left\{\begin{array}{ccl}
+		\gamma\ \xi=\xi&\Rightarrow&\tilde\gamma=U\ \psi\ (\gamma\otimes\{\xi,\beta\})\ \gamma\\
+		\gamma\ \xi\neq\xi&\Rightarrow&\tilde\gamma= U\ (\{(\gamma\ \xi,\beta)\}\cup\psi)\ \gamma\\
+		\end{array}\right.$
+	\end{itemize}}&\scell{}\\
+\hline
+\bcell{$U\ (\{(\xi,\pi_1\to\pi_2)\}\cup\psi)\ \gamma=\tilde\gamma$
+	\begin{itemize}
+	\item$\left\{\begin{array}{ccl}
+		\gamma\ \xi=\xi&\Rightarrow&\tilde\gamma=U\ \psi\ (\gamma\otimes\{(\xi,\pi_1\to\pi_2)\})\\
+		\gamma\ \xi\neq\xi&\Rightarrow&\tilde\gamma=U\ (\{(\gamma\ \xi,\pi_1\to\pi_2)\}\cup\psi)\ \gamma\\
+		\end{array}\right.$
+	\end{itemize}}&\scell{}\\
+\hline
+\bcell{$U\ (\{(\beta_1,\beta_2)\}\cup\psi)\ \gamma=\tilde\gamma$
+	\begin{itemize}
+	\item $\left\{\begin{array}{ccl}
+		\beta_1=\beta_2&\Rightarrow&\tilde\gamma=U\ \psi\ \gamma\\
+		\beta_1\neq\beta_2&\Rightarrow&\tilde\gamma=\bot\\
+		\end{array}\right.$
+	\end{itemize}}&\scell{}\\
+\hline
+\bcell{$U\ (\{(\beta,\pi_1\to\pi_2)\}\cup\psi)\ \gamma=\bot$}&\scell{}\\
+\hline
+\bcell{$U\ (\{(\beta,\xi)\}\cup\psi)\ \gamma=U\ (\{(\xi,\beta)\}\cup\psi)\ \gamma$}&\scell{}\\
+\hline
+\bcell{$U\ (\{(\pi_1\to\pi_2,\tilde\pi_1\to\tilde\pi_2)\}\cup \psi)\ \gamma=U\ (\{(\pi_1,\tilde\pi_1),(\pi_2,\tilde\pi_2)\}\cup\psi)\ \gamma$}&\scell{}\\
+\hline
+\bcell{$U\ (\{(\pi_1\to\pi_2,\xi)\}\cup\psi)\ \gamma=U\ (\{\xi,\pi_1\to\pi_2\}\cup\psi)\ \gamma$}&\scell{}\\
+\hline
+\bcell{$U\ (\{(\pi_1\to\pi_2,\beta)\}\cup\psi)\ \gamma=\bot$}&\scell{}\\
+\hline
+\end{tabular}
+\caption{}
+\label{unify}
+\end{table}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+\chapter{Correctness of the iterative typing}
+
+\section{Monomorphic type inference}
+
+\begin{equation}
+\ax{x:\tau	\in\Gamma}
+\ax{\tau \leq \tau'}
+\bic{\Gamma\vdash x:\tau'}
+\drule
+\end{equation}
+
+\begin{equation}
+\ax{\Gamma,x:\tau\vdash e :\tau'}
+\unc{\Gamma\vdash \lambda x. e : \tau \to \tau'}
+\drule
+\end{equation}
+
+\begin{equation}
+\ax{\Gamma\vdash e_1:\tau}
+\ax{\Gamma\vdash e_2:\tau\to\tau'}
+\bic{\Gamma\vdash (e_1~e_2):\tau'}
+\drule
+\end{equation}
+
+\paragraph{Type safety} If there exists a derivation that ends with: $\Gamma\vdash e:\tau$ then $inter(env,e)$ is does not produce a type error (where for all $x$: $env(x)$ return a value of type $\Gamma(x)$).
+
+\subsection{Basic type inference}
+
+\begin{enumerate}
+\item $W(\Gamma,x)=(Id,\Gamma(x))$
+\item $W(\Gamma,[\lambda x . e])=(S,\tau)$
+	\begin{itemize}
+	\item $(S,\tau')=W(\Gamma+\{x:a\},e)$
+	\item $\tau:S(a)\to\tau'$
+	\end{itemize}
+\item $W(\Gamma,[e_1~e_2])=(S,\tau)$
+	\begin{itemize}
+	\item $(S_1,\tau_1)=W(\Gamma,e_1)$
+	\item $(S_2,\tau_2)=W(S_1(\Gamma),S_1(e_2))$
+	\item $V=U(S_2(\tau_1),\tau_2\to a)$
+	\item $S=S_1.S_2.V$
+	\item $\tau=V(a)$
+	\end{itemize}
+\end{enumerate}
+
+\paragraph{Soudness} If $W(\Gamma,e)$ succeed with $(S,\tau)$ then there exists a derivation which end with: $S(\Gamma)\vdash e:\tau$. Because the type system is type safe, we ensure that every expression 
+
+\paragraph{Completness} If there exists a derivation which end with: $\Gamma\vdash e:\tau$ then there exists $S$ such that: $W(S(\Gamma),e)=(S,\tau)$.
+

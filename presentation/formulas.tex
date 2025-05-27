@@ -1,0 +1,113 @@
+\documentclass[a4paper]{article}
+\usepackage{bussproofs}
+\usepackage{color}
+
+\newcommand{\ax}[1]% axiome in prooftree
+{\AxiomC{$#1$}}
+\newcommand{\unc}[1]% unary conlusion in prooftree
+{\UnaryInfC{$#1$}}
+\newcommand{\bic}[1]% binary conlusion in prooftree
+{\BinaryInfC{$#1$}}
+\newcommand{\tric}[1]% trinary conclusion in prooftree
+{\TrinaryInfC{$#1$}}
+\newcommand{\llabel}[1]% left label in prooftree
+{\LeftLabel{#1}}
+\newcommand{\drule}% display the rule (not with the environnement prooftreee)
+{\DisplayProof}
+
+\begin{document}
+
+$$\begin{array}{ccc}
+\ax{x:\sigma\in A}
+\llabel{ID}
+\unc{A\vdash x:\sigma}
+\drule
+&&
+\ax{type(c)=\gamma}
+\llabel{CONST}
+\unc{A\vdash c:\gamma}
+\drule
+\\\\\\
+\ax{A\vdash e:\tau'\to\tau}
+\ax{A\vdash e':\tau'}
+\llabel{APP}
+\bic{A\vdash (e\ e'):\tau}
+\drule
+&&
+\ax{A\cup\{x:\tau\}\vdash e:\tau'}
+\llabel{ABS}
+\unc{A\vdash (\lambda\ x\ e):\tau\to\tau'}
+\drule
+\\\\\\
+\multicolumn{3}{c}{
+\ax{A\cup\{x:\tau\}\vdash e:\sigma}
+\ax{A\cup\{x:\sigma\}\vdash e':\tau'}
+\ax{\tau\sqsubseteq\sigma}
+\llabel{LET}
+\tric{A\vdash (let\ x\ e\ e'):\tau'}
+\drule}
+\\\\\\
+\ax{A\vdash e:\forall\{\alpha_i\}.\tau\to\tau'}
+\ax{\alpha\notin free(A)}
+\llabel{\textcolor{blue}{GEN}}
+\bic{A\vdash e:\forall\alpha.\forall\{\alpha_i\}.\tau\to\tau'}
+\drule
+&&
+\ax{A\vdash e : \forall\{\alpha_i\}.\tau}
+\ax{\tau' = \left[\alpha_i\mapsto\tau_i\right]\tau}
+\llabel{\textcolor{blue}{SPE}}
+\bic{A\vdash \textcolor{red}{\left[\alpha_i\mapsto\tau_i\right]}\ e:\tau'}
+\drule
+\end{array}$$
+
+$$\ax{A\vdash e_p:\tau_p}
+\ax{\left[\alpha'_i\mapsto\tau'_i\right]A\vdash e':\tau}
+\ax{\left[\alpha''_i\mapsto\tau''_i\right]A\vdash e'':\tau}
+\llabel{\textcolor{blue}{COND}}
+\tric{A\vdash (if\ e_p\ \textcolor{red}{\left[\alpha'_i\mapsto\tau'_i\right]}\ e'\ \textcolor{red}{\left[\alpha''_i\mapsto\tau''_i\right]}\ e''):\tau}
+\drule$$
+
+$$\ax{x:B\in\{x:B\}}
+\llabel{ID}
+\unc{\{x:B\}\vdash x:B}
+\ax{type(1)=N}
+\llabel{CONST}
+\unc{\{x:B\}\vdash 1:N}
+\unc{\left[\alpha\mapsto N\right]\{x:B\}\vdash 1:\alpha}
+\ax{type("foo")=S}
+\llabel{CONST}
+\unc{\{x:B\}\vdash "foo":S}
+\unc{\left[\alpha\mapsto S\right]\{x:B\}\vdash "foo":\alpha}
+\llabel{\textcolor{blue}{COND}}
+\tric{\{x:B\}\vdash (if\ x\ \textcolor{red}{\left[\alpha\mapsto N\right]}\ 1\ \textcolor{red}{\left[\alpha\mapsto S\right]}\ "foo"):\alpha}
+\drule$$
+
+\newpage
+
+$$A:=\{y:B,incr:N\to N, repeat:S\to S\}$$
+
+$$
+\ax{incr:N\to N \in A\cup x:N}
+\llabel{ID}
+\unc{A\cup x:N\vdash incr:N\to N}
+\ax{x:N\in A\cup x:N}
+\llabel{ID}
+\unc{A\cup x:N\vdash x:N}
+\llabel{APP}
+\bic{A\cup x:N\vdash (incr\ x):N}
+\unc{\left[\alpha\mapsto N\right]A\cup x:\alpha\vdash (incr\ x):\alpha~~~~~~~(*)}
+\drule
+$$
+
+$$
+\ax{y:B\in A\cup x:\alpha}
+\llabel{ID}
+\unc{A\cup x:\alpha \vdash y:B}
+\ax{(*)}
+\ax{\ldots}
+\unc{\left[\alpha\mapsto S\right]A\cup x:\alpha\vdash (repeat\ x):\alpha}
+\llabel{COND}
+\tric{A\cup x:\alpha\vdash (if\ y\ \left[\alpha\to N\right]\ (incr\ x)\ \left[\alpha\to S\right]\ (double\ x)):\alpha}
+\drule
+$$
+\end{document}

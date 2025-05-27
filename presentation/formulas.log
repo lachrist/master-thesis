@@ -1,0 +1,144 @@
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.6.25)  2 SEP 2012 19:13
+entering extended mode
+ %&-line parsing enabled.
+**formulas.tex
+(./formulas.tex
+LaTeX2e <2009/09/24>
+Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
+yphenation, farsi, arabic, croatian, bulgarian, ukrainian, russian, czech, slov
+ak, danish, dutch, finnish, french, basque, ngerman, german, german-x-2009-06-1
+9, ngerman-x-2009-06-19, ibycus, monogreek, greek, ancientgreek, hungarian, san
+skrit, italian, latin, latvian, lithuanian, mongolian2a, mongolian, bokmal, nyn
+orsk, romanian, irish, coptic, serbian, turkish, welsh, esperanto, uppersorbian
+, estonian, indonesian, interlingua, icelandic, kurmanji, slovenian, polish, po
+rtuguese, spanish, galician, catalan, swedish, ukenglish, pinyin, loaded.
+(/usr/share/texmf-texlive/tex/latex/base/article.cls
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+(/usr/share/texmf-texlive/tex/latex/base/size10.clo
+File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(/usr/share/texmf-texlive/tex/latex/bussproofs/bussproofs.sty
+Proof Tree (bussproofs) style macros. Version 1.0.
+\theLevel=\count87
+\myMaxLevel=\count88
+\myBoxA=\box26
+\myBoxB=\box27
+\myBoxC=\box28
+\myBoxD=\box29
+\myBoxLL=\box30
+\myBoxRL=\box31
+\thisAboveSkip=\dimen103
+\thisBelowSkip=\dimen104
+\newScoreStart=\dimen105
+\newScoreEnd=\dimen106
+\newCenter=\dimen107
+\displace=\dimen108
+\leftLowerAmt=\dimen109
+\rightLowerAmt=\dimen110
+\scoreHeight=\dimen111
+\scoreDepth=\dimen112
+\htLbox=\dimen113
+\htRbox=\dimen114
+\htAbox=\dimen115
+\htCbox=\dimen116
+) (/usr/share/texmf-texlive/tex/latex/graphics/color.sty
+Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
+
+(/etc/texmf/tex/latex/config/color.cfg
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package color Info: Driver file: pdftex.def on input line 130.
+
+(/usr/share/texmf-texlive/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2010/03/12 v0.04p Graphics/color for pdfTeX
+\Gread@gobject=\count89
+)) (./formulas.aux)
+\openout1 = `formulas.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+
+(/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count90
+\scratchdimen=\dimen117
+\scratchbox=\box32
+\nofMPsegments=\count91
+\nofMParguments=\count92
+\everyMPshowfont=\toks14
+\MPscratchCnt=\count93
+\MPscratchDim=\dimen118
+\MPnumerator=\count94
+\everyMPtoPDFconversion=\toks15
+)
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 20.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 20.
+\myBox1=\box33
+\myScoreStart1=\dimen119
+\myCenter1=\dimen120
+\myScoreEnd1=\dimen121
+\myBox2=\box34
+\myScoreStart2=\dimen122
+\myCenter2=\dimen123
+\myScoreEnd2=\dimen124
+\myBox3=\box35
+\myScoreStart3=\dimen125
+\myCenter3=\dimen126
+\myScoreEnd3=\dimen127
+
+Overfull \hbox (69.88853pt too wide) detected at line 61
+[]
+ []
+
+
+Overfull \hbox (70.23296pt too wide) detected at line 83
+[]
+ []
+
+[1
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] (./formulas.aux) ) 
+Here is how much of TeX's memory you used:
+ 892 strings out of 493848
+ 10909 string characters out of 1152823
+ 68391 words of memory out of 3000000
+ 4233 multiletter control sequences out of 15000+50000
+ 3640 words of font info for 14 fonts, out of 3000000 for 9000
+ 714 hyphenation exceptions out of 8191
+ 23i,14n,17p,179b,162s stack positions out of 5000i,500n,10000p,200000b,50000s
+</us
+r/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/tex
+mf-texlive/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-texlive/f
+onts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/type1/p
+ublic/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfo
+nts/cm/cmsy7.pfb>
+Output written on formulas.pdf (2 pages, 55898 bytes).
+PDF statistics:
+ 29 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+
